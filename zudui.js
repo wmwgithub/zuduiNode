@@ -41,12 +41,13 @@ const mycount = require('./router/mycount')
 const getanswer = require('./router/getanswer')
 const fankui = require('./fankui/fankui')
 const reason = require('./router/reason')
+const judgeid = require('./router/judgeid')
 module.exports = {
     'zuduifunction': [
-        reason, fankui, getanswer, mycount, politicsdt, politics, associatedt, associate, storydt, story, studydt, study, sport, gfcode, early, answer, question, activity, adduser, cardimg, cardday, cardinfo, cardtext, cardtime, code, create, endcy, endfb, findteaminfo, findwe, getcard, getindex, gettime, gread, hobby, image, isjoin, needcard, teaminfo, wdcy, wdfb, FMInfo, gfactive
+        judgeid, reason, fankui, getanswer, mycount, politicsdt, politics, associatedt, associate, storydt, story, studydt, study, sport, gfcode, early, answer, question, activity, adduser, cardimg, cardday, cardinfo, cardtext, cardtime, code, create, endcy, endfb, findteaminfo, findwe, getcard, getindex, gettime, gread, hobby, image, isjoin, needcard, teaminfo, wdcy, wdfb, FMInfo, gfactive
     ]
     ,
     'zuidurouter': [
-        '/reason', '/fankui', '/getanswer', '/mycount', '/politicsdt', '/politics', '/associatedt', '/associate', '/storydt', '/story', '/studydt', '/study', '/sport', '/gfcode', '/early', '/answer', '/question', '/activity', '/adduser', '/cardimage', '/cardday', '/cardinfo', '/cardtext', '/cardtime', '/code', '/create', '/endcy', '/endfb', '/findteaminfo', '/findwe', '/getcard', '/getindex', '/gettime', '/gread', '/hobby', '/image', '/isjoin', '/needcard', '/teaminfo', '/wdcy', '/wdfb', '/findMyinfo', '/gfactive'
+        '/judgeid', '/reason', '/fankui', '/getanswer', '/mycount', '/politicsdt', '/politics', '/associatedt', '/associate', '/storydt', '/story', '/studydt', '/study', '/sport', '/gfcode', '/early', '/answer', '/question', '/activity', '/adduser', '/cardimage', '/cardday', '/cardinfo', '/cardtext', '/cardtime', '/code', '/create', '/endcy', '/endfb', '/findteaminfo', '/findwe', '/getcard', '/getindex', '/gettime', '/gread', '/hobby', '/image', '/isjoin', '/needcard', '/teaminfo', '/wdcy', '/wdfb', '/findMyinfo', '/gfactive'
     ]
 }

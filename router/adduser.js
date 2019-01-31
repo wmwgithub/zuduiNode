@@ -11,31 +11,30 @@ let out = {}
     city: Sequelize.STRING(100),
     province: Sequelize.STRING(50),
     country: Sequelize.STRING(50)
-
+   studentid:Sequelize.STRING(10),
+    pwd:Sequelize.STRING(20)
 */
 async function adduser(ctx, next) {
     let data = ctx.request.query
-    let userinfo = JSON.parse(data.info)
-    let openid = data.openid
-    console.log(userinfo)
     await user.upsert({
-        name: userinfo.nickName,
-        image: userinfo.avatarUrl,
-        openid: openid,
-        province: userinfo.province,
-        country: userinfo.country
-    },{
-        fields:['name','image','openid','province','country']
-    }).then((res) => {
-    })
+        name: data.nickName,
+        image: data.avatarUrl,
+        openid: data.openId,
+        province: data.province,
+        country: data.country,
+        studentid: data.studentid,
+        pwd: data.pwd
+    }, {
+            fields: ['name', 'image', 'openid', 'province', 'country', 'studentid', 'pwd']
+        }).then((res) => {
+        })
     await user.findOne({
-        where:{
-            openid:openid
+        where: {
+            openid: data.openId
         }
-    }).then((res)=>{
+    }).then((res) => {
         out = res.dataValues
     })
-    console.log(out)
     ctx.body = {
         "userid": out.id,
         "openid": out.openid,
