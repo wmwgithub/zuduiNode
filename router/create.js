@@ -30,7 +30,8 @@ async function create(ctx, next) {
         open_id: actinfo.open_id,
         act_id: actid,
         iscard: 0,
-        time: createTime
+        time: createTime,
+        creater:1
     })
     ctx.body = {
         "actid": actid

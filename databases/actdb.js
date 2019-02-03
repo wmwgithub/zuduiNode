@@ -16,7 +16,8 @@ var activity = sequelize.define('active', {
     open_id: Sequelize.STRING(50),
     userid: Sequelize.INTEGER(11),
     isend: Sequelize.INTEGER(2),
-    count: Sequelize.INTEGER(11)
+    count: Sequelize.INTEGER(11),
+    actimage:Sequelize.INTEGER(2)
 })
 activity.belongsTo(userdb, { foreignKey: 'open_id', targetKey: 'openid' })
 module.exports = activity;

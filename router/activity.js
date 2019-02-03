@@ -39,22 +39,12 @@ async function activity(ctx, next) {
 
         })
     }
-    let actImg = path.join(__dirname, '../act_img')
-    let address = 'http://192.168.10.191:8001'
-    await actArray.forEach((value, index, input) => {
-        let imgPath = path.join(actImg, `${value.open_id}`, `${value.id}`)
-        let imgURL = `${address}/${value.open_id}/${value.id}`
-        try {
-            let imgName = fs.readdirSync(imgPath, { withFileTypes: true })
-            imgName=imgName.map((imgvalue)=>{
-                return `${imgURL}/${imgvalue}`
-            })
-            value.name = imgName
-        } catch (e) {
-        }
+
+    actArray.forEach((value, index, input) => {
         let timestamp = parseInt(value.time)
         let date = new Date(timestamp)
         value.time = `${date.getMonth() + 1}月${date.getDate()}日`
+        value.actimage = new Array(value.actimage+1)
     })
     ctx.body = actArray
 }
