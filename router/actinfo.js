@@ -12,13 +12,20 @@ async function actinfo(ctx, next) {
         active = res[0].dataValues
     })
     active.actimage = new Array(active.actimage + 1)
+    if (openid) {
+
+    } else {
+        ctx.body = { active }
+        return 0
+    }
     await joindb.findOne({
         where: {
             act_id: parseInt(actid),
             open_id: openid
         }
     }).then((res) => {
-        joininfo = res.dataValues
+        joininfo = res
+        console.log('joininfores', joininfo)
     })
     if (joininfo) {
         ctx.body = { active, joininfo }

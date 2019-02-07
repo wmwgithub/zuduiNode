@@ -20,4 +20,4 @@ var activity = sequelize.define('active', {
     actimage:Sequelize.INTEGER(2)
 })
 activity.belongsTo(userdb, { foreignKey: 'open_id', targetKey: 'openid' })
-module.exports = activity;
+module.exports = activity

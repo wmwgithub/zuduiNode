@@ -31,7 +31,10 @@ async function create(ctx, next) {
         act_id: actid,
         iscard: 0,
         time: createTime,
-        creater:1
+        creater:1,
+        name:actinfo.name,
+        phone:actinfo.tel,
+        qq:actinfo.qq
     })
     ctx.body = {
         "actid": actid

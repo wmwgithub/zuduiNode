@@ -17,7 +17,7 @@ const gettime = require('./router/gettime')
 const gread = require('./router/gread')
 const actinfo = require('./router/actinfo')
 const image = require('./router/image')
-const isjoin = require('./router/isjoin')
+const userjoin = require('./router/userjoin')
 const needcard = require('./router/needcard')
 const teaminfo = require('./router/teaminfo')
 const wdcy = require('./router/wdcy')
@@ -43,12 +43,13 @@ const fankui = require('./fankui/fankui')
 const reason = require('./router/reason')
 const judgeid = require('./router/judgeid')
 const search = require('./router/search')
+const showjoinuser = require('./router/showjoinuser')
 module.exports = {
     'zuduifunction': [
-        search, judgeid, reason, fankui, getanswer, mycount, politicsdt, politics, associatedt, associate, storydt, story, studydt, study, sport, gfcode, early, answer, question, activity, adduser, cardimg, cardday, cardinfo, cardtext, cardtime, code, create, endcy, endfb, findteaminfo, findwe, getcard, getindex, gettime, gread, actinfo, image, isjoin, needcard, teaminfo, wdcy, wdfb, FMInfo, gfactive
+        showjoinuser, search, judgeid, reason, fankui, getanswer, mycount, politicsdt, politics, associatedt, associate, storydt, story, studydt, study, sport, gfcode, early, answer, question, activity, adduser, cardimg, cardday, cardinfo, cardtext, cardtime, code, create, endcy, endfb, findteaminfo, findwe, getcard, getindex, gettime, gread, actinfo, image, userjoin, needcard, teaminfo, wdcy, wdfb, FMInfo, gfactive
     ]
     ,
     'zuidurouter': [
-        '/search', '/judgeid', '/reason', '/fankui', '/getanswer', '/mycount', '/politicsdt', '/politics', '/associatedt', '/associate', '/storydt', '/story', '/studydt', '/study', '/sport', '/gfcode', '/early', '/answer', '/question', '/activity', '/adduser', '/cardimage', '/cardday', '/cardinfo', '/cardtext', '/cardtime', '/code', '/create', '/endcy', '/endfb', '/findteaminfo', '/findwe', '/getcard', '/getindex', '/gettime', '/gread', '/actinfo', '/image', '/isjoin', '/needcard', '/teaminfo', '/wdcy', '/wdfb', '/findMyinfo', '/gfactive'
+        '/showjoinuser', '/search', '/judgeid', '/reason', '/fankui', '/getanswer', '/mycount', '/politicsdt', '/politics', '/associatedt', '/associate', '/storydt', '/story', '/studydt', '/study', '/sport', '/gfcode', '/early', '/answer', '/question', '/activity', '/adduser', '/cardimage', '/cardday', '/cardinfo', '/cardtext', '/cardtime', '/code', '/create', '/endcy', '/endfb', '/findteaminfo', '/findwe', '/getcard', '/getindex', '/gettime', '/gread', '/actinfo', '/image', '/userjoin', '/needcard', '/teaminfo', '/wdcy', '/wdfb', '/findMyinfo', '/gfactive'
     ]
 }

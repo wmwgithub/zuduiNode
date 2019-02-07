@@ -13,7 +13,7 @@ var user = sequelize.define('user', {
     city: Sequelize.STRING(100),
     province: Sequelize.STRING(50),
     country: Sequelize.STRING(50),
-    studentid:Sequelize.STRING(10),
-    pwd:Sequelize.STRING(20)
+    studentid: Sequelize.STRING(10),
+    pwd: Sequelize.STRING(20)
 })
 module.exports = user
