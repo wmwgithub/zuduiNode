@@ -1,53 +1,44 @@
-const greaddb = require('../databases/greaddb')
-const user = require('../databases/userdb')
-function gread() {
-    return async (ctx, next) => {
-        let data = ctx.request.query
-        let arr = []
-        async function fun() {
-            return greaddb.findAll({
-                'order': [['num','DESC']],
-                where: {
-                    actid: data.actid
-                }
-            }).then((res) => {
-                for (let i = 0; i < res.length; i++) {
-                    arr.push(res[i].dataValues)
-                }
-                return arr
-            })
-        }
-        out = await fun()
-        let myorder = 1
-        for (let i = 0; i < out.length; i++) {
-            if (out[i].userid == data.userid) {
-                //从数组中找到我在哪然后下标加以
-                myorder = i + 1
-            }
-        }
+const userdb = require('../databases/userdb')
+const card = require('../databases/carddb')
+const sequelize = require('sequelize')
+async function gread(ctx, next) {
+    let data = ctx.request.query
+    //data:{actid:'',openid:''}
+    await card.findAll({
+        attributes: ['openid', [sequelize.fn('COUNT', sequelize.col('iscard.openid')), 'day']],
+        order: [[sequelize.fn('COUNT', sequelize.col('iscard.openid')), 'DESC']],
+        where: {
+            actid: data.actid,
+        },
+        group: 'iscard.openid',
+        include: [{
+            model: userdb
+        }]
 
-        let out2 = []
-        for (let i = 0; i < out.length; i++) {
-            async function change_out() {
-                return user.findAll({
-                    where: {
-                        id: out[i].userid
-                    }
-                }).then((res) => {
-                    out[i].userid = res[0].dataValues.name
-                    return out[i]
-                })
+    }).then((res) => {
+        console.log(res)
+        let day, order
+        res.forEach((value, index, input) => {
+            if (value.openid == data.openid) {
+                day = value.dataValues.day
+                order = index + 1
             }
-            out2[i] = await change_out()
-        }
-
-        await outdata()
-        async function outdata() {
+        })
+        if (res.length <= 3) {
             ctx.body = {
-                "out": out2,
-                "myorder": myorder
+                phb_arr: res,
+                day,
+                order
+            }
+        } else {
+            ctx.body = {
+                phb_arr: [res[0].dataValues,res[1].dataValues,res[2].dataValues],
+                day,
+                order
             }
         }
-    }
+
+    })
+    return 0
 }
-module.exports = gread()
+module.exports = gread

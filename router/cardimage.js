@@ -1,9 +1,7 @@
 const fs = require('fs')
 const path = require('path')
+const card = require('../databases/carddb')
 async function cardimage(ctx, next) {
-    console.log(ctx.request.files)
-    console.log(ctx.request.body)
-    
     let imgpath = ctx.request.files.card_image.path
     let time = ctx.request.body.time
     let open_id = ctx.request.body.openid
@@ -16,12 +14,21 @@ async function cardimage(ctx, next) {
                 console.log(err)
             }
             if (!err) {
-                console.log("success")
-                ctx.body = {
-                    "message": "upload success"
-                }
             }
         })
     })
+    await card.update({
+        imglength:ctx.request.body.imglength
+    }, {
+            where: {
+                actid: act_id,
+                openid: open_id,
+                cardtime:time
+            }
+        })
+    ctx.body = {
+        "message": "upload success"
+    }
+    return 0
 }
 module.exports = cardimage
