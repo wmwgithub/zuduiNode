@@ -1,29 +1,14 @@
-const act = require('../databases/actdb')
+const actdb = require('../databases/actdb')
 
-function wdfb() {
-    return async (ctx, next) => {
-        let wdfbarr = []
-        var data = ctx.request.query
-        async function fun(data) {
-            return act.findAll({
-                where: {
-                    open_id: data.openid
-                }
-            }).then((res) => {
-                if (res[0]) {
-                    for (let i = 0; i < res.length; i++) {
-                        wdfbarr.push(res[i].dataValues)
-                    }
-                }
-                return wdfbarr
-            })
+async function wdfb(ctx, next) {
+    await actdb.findAll({
+        where: {
+            isend:1,//没有结束的
+            open_id: ctx.request.query.openid
+        }
+    }).then((res) => {
 
-        }
-        var out = await fun(data)
-        //console.log(out)
-        ctx.body = {
-            "arr": out
-        }
-    }
+        ctx.body = res
+    })
 }
-module.exports = wdfb()
+module.exports = wdfb

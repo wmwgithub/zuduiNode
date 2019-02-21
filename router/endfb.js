@@ -1,19 +1,14 @@
-const act = require('../databases/actdb')
+const actdb = require('../databases/actdb')
 
-function endfb() {
-    return async (ctx, next) => {
-        // console.log(ctx.request.query)
-        act.update({
-            "isend": 0
-        }, {
+async function endfb(ctx, next) {
+
+    await actdb.update({
+        "isend": 0
+    }, {
             where: {
                 id: ctx.request.query.actid
             }
         })
-        ctx.body = {
-            "data": "success"
-        }
-    }
+    ctx.body = 'wdfb'
 }
-
-module.exports = endfb()
+module.exports = endfb

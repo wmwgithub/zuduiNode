@@ -13,6 +13,7 @@ async function activity(ctx, next) {
             type: [parseInt(data.x), parseInt(data.y)],
             isend: 1,
             //0 表示结束 1表示未结束 这边只查询 未结束的活动
+            review:1,//1表示通过2表示没通过0,表示审核中
         },
         include: [{
             model: user,

@@ -9,7 +9,9 @@ const Router = new router();
 const actimg_static = static(path.join(__dirname, '/act_img'))
 const cardimg_static = static(path.join(__dirname, '/card_img'))
 const gfimg = static(path.join(__dirname, '/gfimg'))
+const zuduiimg = static(path.join(__dirname, '/zuduiimg'))
 app.use(gfimg)
+app.use(zuduiimg)
 app.use(actimg_static)
 app.use(cardimg_static)
 //zudui -- static --end
@@ -27,32 +29,14 @@ zuduirouter.forEach((value, index, input) => {
 })
 //zudui -- end
 
-//newsapi -- start
-const api = require('./api')
-const apifunction = api.newsfunction
-const apirouter = api.newsrouter
-apirouter.forEach((value, index, input) => {
-    Router.all(value, apifunction[index])
-})
-//newsapi -- end
-
-//album --start
-
-//album -- end
-//测试
-// const fs = require('fs')
-// fs.access(path.join(__dirname, 'cece'), (err) => {
-//     if (err) {
-//         console.log(err)
-//         fs.mkdir(path.join(__dirname, 'cece'), (err) => {
-//             console.log(err)
-//         })
-//     } else {
-//         fs.mkdir(path.join(__dirname, 'cece',`${(new Date).getTime()}`), (err) => {
-//             console.log(err)
-//         })
-//     }
+// //newsapi -- start
+// const api = require('./api')
+// const apifunction = api.newsfunction
+// const apirouter = api.newsrouter
+// apirouter.forEach((value, index, input) => {
+//     Router.all(value, apifunction[index])
 // })
-//
+// //newsapi -- end
+
 app.listen(8001)
 console.log('app started at port 8001...')

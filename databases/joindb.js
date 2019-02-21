@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('./config')
 const activedb= require('./actdb')
+const card = require('./carddb')
 var join = sequelize.define('userjoin', {
     user_id: Sequelize.INTEGER(11),
     open_id: Sequelize.STRING(100),
