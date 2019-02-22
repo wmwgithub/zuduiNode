@@ -17,7 +17,6 @@ app.use(cardimg_static)
 //zudui -- static --end
 app.use(koa_body({
     multipart: true
-
 }));
 app.use(Router.routes());
 //zudui--start
@@ -27,16 +26,6 @@ const zuduirouter = zudui.zuidurouter
 zuduirouter.forEach((value, index, input) => {
     Router.all(value, zuduifunction[index])
 })
-//zudui -- end
-
-// //newsapi -- start
-// const api = require('./api')
-// const apifunction = api.newsfunction
-// const apirouter = api.newsrouter
-// apirouter.forEach((value, index, input) => {
-//     Router.all(value, apifunction[index])
-// })
-// //newsapi -- end
 
 app.listen(8001)
 console.log('app started at port 8001...')
