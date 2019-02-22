@@ -1,9 +1,17 @@
 act_img/*
+!act_img/.gitkeep
 card_img/*
+!card_img/.gitkeep
 node_modules
 gfimg/associate/*
+!gfimg/associate/.gitkeep
 gfimg/politics/*
+!gfimg/politics/.gitkeep
 gfimg/story/*
+!gfimg/story/.gitkeep
 gfimg/study/*
+!gfimg/study/.gitkeep
 fankui/img/*
+!fankui/img/.gitkeep
 fankui/text/*
+!fankui/text/.gitkeep
