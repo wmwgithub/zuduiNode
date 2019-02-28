@@ -1,0 +1,3 @@
+-  npm install --save
+- node server.js`
+- zudui.sql 是用mysqldump导出的数据库文件,测试数据记得删除
