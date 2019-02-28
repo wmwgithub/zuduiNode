@@ -1,3 +1,3 @@
-### 组队打卡小程序node.js
-### 增加了官方活动接口
-
+-  npm install --save
+- node server.js`
+- zudui.sql 是用mysqldump导出的数据库文件,测试数据记得删除
