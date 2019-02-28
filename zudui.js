@@ -9,47 +9,26 @@ const code = require('./router/code')
 const create = require('./router/create')
 const endcy = require('./router/endcy')
 const endfb = require('./router/endfb')
-const findteaminfo = require('./router/findteaminfo')
 const findwe = require('./router/findwe')
 const getcard = require('./router/getcard')
-const getindex = require('./router/getindex')
 const gettime = require('./router/gettime')
 const gread = require('./router/gread')
 const actinfo = require('./router/actinfo')
 const image = require('./router/image')
 const userjoin = require('./router/userjoin')
 const needcard = require('./router/needcard')
-const teaminfo = require('./router/teaminfo')
 const wdcy = require('./router/wdcy')
 const wdfb = require('./router/wdfb')
-const FMInfo = require('./router/findMyinfo')
-const gfactive = require('./router/gfactive')
-const question = require('./router/question')
-const answer = require('./router/answer')
-const early = require('./router/early')
-const gfcode = require('./router/gfcode')
-const sport = require('./router/sport')
-const study = require('./router/study')
-const studydt = require('./router/studydt')
-const story = require('./router/story')
-const storydt = require('./router/storydt')
-const associate = require('./router/associate')
-const associatedt = require('./router/associatedt')
-const politics = require('./router/politics')
-const politicsdt = require('./router/politicsdt')
-const mycount = require('./router/mycount')
-const getanswer = require('./router/getanswer')
 const fankui = require('./fankui/fankui')
-const reason = require('./router/reason')
 const judgeid = require('./router/judgeid')
 const search = require('./router/search')
 const showjoinuser = require('./router/showjoinuser')
 module.exports = {
     'zuduifunction': [
-        showjoinuser, search, judgeid, reason, fankui, getanswer, mycount, politicsdt, politics, associatedt, associate, storydt, story, studydt, study, sport, gfcode, early, answer, question, activity, adduser, cardimg, cardday, cardinfo, cardtext, cardtime, code, create, endcy, endfb, findteaminfo, findwe, getcard, getindex, gettime, gread, actinfo, image, userjoin, needcard, teaminfo, wdcy, wdfb, FMInfo, gfactive
+        showjoinuser, search, judgeid, fankui, activity, adduser, cardimg, cardday, cardinfo, cardtext, cardtime, code, create, endcy, endfb, getcard, gettime, gread, actinfo, image, userjoin, needcard, wdcy, wdfb, findwe
     ]
     ,
     'zuidurouter': [
-        '/showjoinuser', '/search', '/judgeid', '/reason', '/fankui', '/getanswer', '/mycount', '/politicsdt', '/politics', '/associatedt', '/associate', '/storydt', '/story', '/studydt', '/study', '/sport', '/gfcode', '/early', '/answer', '/question', '/activity', '/adduser', '/cardimage', '/cardday', '/cardinfo', '/cardtext', '/cardtime', '/code', '/create', '/endcy', '/endfb', '/findteaminfo', '/findwe', '/getcard', '/getindex', '/gettime', '/gread', '/actinfo', '/image', '/userjoin', '/needcard', '/teaminfo', '/wdcy', '/wdfb', '/findMyinfo', '/gfactive'
+        '/showjoinuser', '/search', '/judgeid', '/fankui', '/activity', '/adduser', '/cardimage', '/cardday', '/cardinfo', '/cardtext', '/cardtime', '/code', '/create', '/endcy', '/endfb', '/getcard', '/gettime', '/gread', '/actinfo', '/image', '/userjoin', '/needcard', '/wdcy', '/wdfb', '/findwe'
     ]
 }

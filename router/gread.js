@@ -1,6 +1,7 @@
 const userdb = require('../databases/userdb')
 const card = require('../databases/carddb')
 const sequelize = require('sequelize')
+//排行榜
 async function gread(ctx, next) {
     let data = ctx.request.query
     //data:{actid:'',openid:''}

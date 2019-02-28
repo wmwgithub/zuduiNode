@@ -12,7 +12,6 @@ async function findwe(ctx, next) {
             model: userdb
         }]
     }).then((res)=>{
-        //res 为数组 数组长度是打卡人数 数组里面含用户头像
        ctx.body=res
     })
 }

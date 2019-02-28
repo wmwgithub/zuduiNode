@@ -35,3 +35,4 @@ async function judgeid(ctx, next) {
 }
 module.exports = judgeid
 // 上述办法放弃 改用模拟浏览器方式
+//模拟浏览器github https://github.com/wmwgithub/school/blob/master/pupeteer.js
