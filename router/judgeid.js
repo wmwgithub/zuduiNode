@@ -1,38 +1,81 @@
 let anxios = require('axios')
 let CryptoJS = require('crypto-js')//加密算法模块
 let schoolUrl = 'http://jxglstu.hfut.edu.cn/eams5-student'
+let schoolCryptoJS = require('../sha1')
+let cheerio = require('cheerio')
 async function judgeid(ctx, next) {
     let data = ctx.request.query
     let [stdid, pwd] = [data.stdid, data.pwd]
     // console.log(stdid, pwd)
     //拿到密码salt
     let encryptPasssword = null
-    let cookie = null
+    let success = false
+    let saltcookie = null
     await anxios
         .get(schoolUrl + '/login-salt')
         .then((salt) => {
-            encryptPasssword = new String(CryptoJS.SHA1(salt.data + '-' + pwd))+""
-            cookie=salt.data
+            saltcookie = salt.headers['set-cookie'][0].split(';')
+            saltcookie = saltcookie[0]
+            encryptPasssword = new String(schoolCryptoJS.SHA1(salt.data + '-' + pwd)) + ""
         })
+    console.log('saltcookie', saltcookie)
+
     let postData = {
         username: stdid,
         password: encryptPasssword,
         captcha: ''
     }
-    console.log(postData.password)
-    anxios({
+    // 本来以为 请求 login 还会返回新的cookie
+    //实际上这一步在学校教务系统里面的作用 就是吧上一步拿到的saltcookie和你自己建立一个对应关系
+    await anxios({
         method: 'post',
-        url: schoolUrl + '/home',
+        url: schoolUrl + '/login',
         data: JSON.stringify(postData),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Cookie': saltcookie
         }
     }).then((stdinfo) => {
-        console.log(stdinfo)
+        if (stdinfo.data.result == true) {
+            success = true
+        }
     })
 
-
+    // 用刚刚拿到的cookie请求新的接口获取信息
+    // 请求 学生档案  http://jxglstu.hfut.edu.cn/eams5-student/my/profile
+    let infoArray=[]
+    await anxios({
+        method: 'get',
+        url: schoolUrl + '/my/profile',
+        headers: {
+            'Cookie': saltcookie
+        }
+    }).then((myprofile) => {
+        // 用cherio解析html文件、
+        let html=myprofile.data
+        let $ = cheerio.load(html)
+        let info = $('.col-md-6 span').toArray()
+        // console.log(info)
+        info.forEach((value,index,input)=>{
+            if(value.firstChild){
+            infoArray[index]=value.firstChild.data
+            }else{
+            infoArray[index]=null
+            }
+        })
+        // console.log(info)
+    })
+    // let lesson=[]
+    // //获取学生课表信息  http://jxglstu.hfut.edu.cn/eams5-student/ws/schedule-table/datum
+    // await anxios({
+    //     method:'post',
+    //     url:schoolUrl+'/ws/schedule-table/datum',
+    //     headers:{
+    //         'Cookie':saltcookie
+    //     }
+    // }).then((lesson)=>{
+    //     console.log(lesson.data)
+    // })
+    ctx.body=infoArray
 }
 module.exports = judgeid
-// 上述办法放弃 改用模拟浏览器方式
-//模拟浏览器github https://github.com/wmwgithub/school/blob/master/pupeteer.js
