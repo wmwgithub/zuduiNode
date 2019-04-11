@@ -3,9 +3,9 @@ let CryptoJS = require('crypto-js')//加密算法模块
 let schoolUrl = 'http://jxglstu.hfut.edu.cn/eams5-student'
 let schoolCryptoJS = require('../sha1')
 let cheerio = require('cheerio')
-async function judgeid(ctx, next) {
+async function judgeid(ctx,next) {
     let data = ctx.request.query
-    let [stdid, pwd] = [data.stdid, data.pwd]
+    let [stdid, pwd] = [2017213893, '033519']
     // console.log(stdid, pwd)
     //拿到密码salt
     let encryptPasssword = null
@@ -14,11 +14,18 @@ async function judgeid(ctx, next) {
     await anxios
         .get(schoolUrl + '/login-salt')
         .then((salt) => {
+            console.log('salt',salt.data)
             saltcookie = salt.headers['set-cookie'][0].split(';')
             saltcookie = saltcookie[0]
+            console.log('----------------')
+            console.log(salt.data + '-' + pwd)
+            
             encryptPasssword = new String(schoolCryptoJS.SHA1(salt.data + '-' + pwd)) + ""
+            
+            // console.log('encryptPasssword',new String(schoolCryptoJS.SHA1('e7eb0407-5672-4ab2-8fe4-c374ca01ea58-33519')))
+            console.log('encryptPasssword',encryptPasssword)
         })
-    console.log('saltcookie', saltcookie)
+    // console.log('saltcookie', saltcookie)
 
     let postData = {
         username: stdid,
@@ -64,6 +71,7 @@ async function judgeid(ctx, next) {
             }
         })
         // console.log(info)
+        // console.log(infoArray)
     })
     // let lesson=[]
     // //获取学生课表信息  http://jxglstu.hfut.edu.cn/eams5-student/ws/schedule-table/datum
@@ -76,6 +84,6 @@ async function judgeid(ctx, next) {
     // }).then((lesson)=>{
     //     console.log(lesson.data)
     // })
-    ctx.body=infoArray
+     ctx.body=infoArray
 }
 module.exports = judgeid
