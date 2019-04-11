@@ -5,7 +5,7 @@ let schoolCryptoJS = require('../sha1')
 let cheerio = require('cheerio')
 async function judgeid(ctx,next) {
     let data = ctx.request.query
-    let [stdid, pwd] = [2017213893, '033519']
+    let [stdid, pwd] = [data.stdid, data.pwd]
     // console.log(stdid, pwd)
     //拿到密码salt
     let encryptPasssword = null
